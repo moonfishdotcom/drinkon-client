@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>drinkon</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -21,13 +21,23 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="drinkon" ng-controller="VenueListCtrl">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Venue List</h1>
       </ion-header-bar>
       <ion-content>
+
+          <ion-list>
+              <ion-item ng-repeat="venue in venues" ng-click="hey(venue)">
+                  <i class="icon ion-wineglass" ng-show="venue.sells.drink"></i>
+                  <i class="icon ion-fork" ng-show="venue.sells.food"></i>
+                  {{ venue.name }}
+                  <span class="item-note">{{ venue.distance}} m</span>
+              </ion-item>
+          </ion-list>
+
       </ion-content>
     </ion-pane>
   </body>
