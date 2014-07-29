@@ -20,25 +20,128 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
   </head>
-  <body ng-app="drinkon" ng-controller="VenueListCtrl">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Venue List</h1>
-      </ion-header-bar>
-      <ion-content>
+  <!--<body ng-app="drinkon" animation="slide-left-right-ios7">-->
 
-          <ion-list>
-              <ion-item ng-repeat="venue in venues" ng-click="hey(venue)">
-                  <i class="icon ion-wineglass" ng-show="venue.sells.drink"></i>
-                  <i class="icon ion-fork" ng-show="venue.sells.food"></i>
-                  {{ venue.name }}
-                  <span class="item-note">{{ venue.distance}} m</span>
-              </ion-item>
-          </ion-list>
+    <!--<ui-view></ui-view>-->
 
-      </ion-content>
-    </ion-pane>
+  <!--</body>-->
+
+    <body ng-app="drinkon">
+
+    <div ng-controller="AppCtrl">
+    <ion-nav-view></ion-nav-view>
+    </div>
+
+    <script type="text/ng-template" id="main.html">
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button class="button-clear">
+                <i class="ion-arrow-left-c"></i> Back
+            </ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-tabs class="tabs-positive">
+            <ion-tab icon="ion-home" ui-sref="app.home">
+                <ion-nav-view name="home"></ion-nav-view>
+            </ion-tab>
+            <ion-tab icon="ion-earth" ui-sref="app.find">
+                <ion-nav-view name="find"></ion-nav-view>
+            </ion-tab>
+            <!--<ion-tab icon="ion-pricetags" ui-sref="">-->
+                <!--<ion-nav-view name="orders"></ion-nav-view>-->
+            <!--</ion-tab>-->
+        </ion-tabs>
+    </script>
+
+    <script type="text/ng-template" id="home.html">
+        <ion-view title="Home">
+            <ion-content padding="true">
+                <h3>Hi Steve</h3>
+                This is the homepage - content to follow...
+            </ion-content>
+        </ion-view>
+    </script>
+
+    <script type="text/ng-template" id="find-location.html">
+        <ion-view title="Locations">
+            <ion-content padding="true">
+                <h4>Where are you going tonight?</h4>
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input type="text" placeholder="Location" ng-model="searchText">
+                    </label>
+                </div>
+                <div class="list list-inset">
+                    <a class="item" href="#" ng-repeat="location in locations | orderBy:'toString()' | filter:searchText" ui-sref="app.find.venue({name:location})">
+                        {{ location }}
+                    </a>
+                </div>
+            </ion-content>
+        </ion-view>
+    </script>
+
+    <script type="text/ng-template" id="find-venue.html">
+        <ion-view title="Venues in {{ location }}">
+            <ion-content padding="true">
+                <h4>Venues near your location</h4>
+                <div class="list list-inset">
+                    <a class="item" href="#" ng-repeat="venue in venues | orderBy:'toString()' | filter:searchText" ui-sref="app.find.venue({name:location})">
+                        <i class="icon ion-wineglass" ng-show="venue.sells.drink"></i>
+
+                        <span class="item-note">{{ venue.distance}} m</span>
+
+                        {{ venue.name }}
+                    </a>
+                </div>
+            </ion-content>
+        </ion-view>
+    </script>
+
+
+    <!--<script type="text/ng-template" id="todos.html">-->
+        <!--<ion-view title="Todos">-->
+            <!--<ion-content>-->
+                <!--<ion-list>-->
+                    <!--<ion-item ng-repeat="todo in todos" class="item item-icon-right" ui-sref="app.todos.detail({todo: $index})">-->
+                        <!--<span ng-class="{done: todo.done}">{{todo.title}}</span>-->
+                        <!--<i class="icon ion-ios7-arrow-right"></i>-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+            <!--</ion-content>-->
+        <!--</ion-view>-->
+    <!--</script>-->
+
+    <!--<script type="text/ng-template" id="todo.html">-->
+        <!--<ion-view title="Todo">-->
+            <!--<ion-content>-->
+                <!--<div class="item">-->
+                    <!--<p>{{todo.title}}</p>-->
+                <!--</div>-->
+
+                <!--<div class="item item-checkbox">-->
+                    <!--<div>-->
+                        <!--<label class="checkbox">-->
+                            <!--<input type="checkbox" ng-model="todo.done">-->
+                        <!--</label>-->
+                        <!--Done-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</ion-content>-->
+        <!--</ion-view>-->
+    <!--</script>-->
+
+    <!--<script type="text/ng-template" id="help.html">-->
+        <!--<ion-view title="Home">-->
+            <!--<ion-content padding="true">-->
+                <!--<h2>Using the app</h2>-->
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis architecto hic officia quasi excepturi sequi deleniti maiores consectetur veritatis sint?</p>-->
+            <!--</ion-content>-->
+        <!--</ion-view>-->
+    <!--</script>-->
+
   </body>
+
 </html>

@@ -1,0 +1,14 @@
+<ion-view title="Venue List">
+    <ion-content>
+
+        <ion-list>
+        <ion-item ng-repeat="venue in venues">
+        <i class="icon ion-wineglass" ng-show="venue.sells.drink"></i>
+        <i class="icon ion-fork" ng-show="venue.sells.food"></i>
+        <a ui-sref="venue.details({name: venue.name})">{{ venue.name }}</a>
+        <span class="item-note">{{ venue.distance}} m</span>
+        </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

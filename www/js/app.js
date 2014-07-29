@@ -1,52 +1,127 @@
-// Ionic Starter App
+// Code goes here
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('drinkon', ['ionic'])
+var app = angular.module('drinkon', ['ionic'])
 
-.controller('VenueListCtrl', function($scope) {
+app.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/home')
 
-  $scope.venues = [
-    {
-      name: 'Cross Keys',
-      distance: 400,
-      sells: {
-        food: true,
-        drink: true
-      },
-      image: 'venue_1.jpg'
-    },
-    {
-      name: 'The Greyhound',
-      distance: 600,
-      sells: {
-        food: false,
-        drink: true
-      },
-      image: 'venue_2.jpg'
-    },
-    {
-      name: 'The Windmill',
-      distance: 1400,
-      sells: {
-        food: true,
-        drink: true
-      },
-      image: 'venue_3.jpg'
-    },
-    {
-      name: 'Dunnington Sports Club',
-      distance: 950,
-      sells: {
-        food: true,
-        drink: true
-      },
-      image: 'venue_4.jpg'
+  $stateProvider
+    .state('app', {
+      abstract: true,
+      templateUrl: 'main.html'
+    })
+    .state('app.home', {
+      url: '/home',
+      views: {
+        home: {
+          templateUrl: 'home.html'
+        }
+      }
+    })
+    .state('app.find', {
+      abstract: true,
+      url: '/find',
+      views: {
+        find: {
+          template: '<ion-nav-view></ion-nav-view>'
+        }
+      }
+    })
+    .state('app.find.location', {
+      url: '',
+      templateUrl: 'find-location.html',
+      controller: 'FindLocationCtrl'
+    })
+    .state('app.find.venue', {
+      url: '/location/:name',
+      templateUrl: 'find-venue.html',
+      controller: 'FindVenueCtrl'
+    });
+
+
+
+//  $stateProvider.state('app.todos', {
+//    abstract: true,
+//    url: '/home',
+//    views: {
+//      todos: {
+//        template: '<ion-nav-view></ion-nav-view>'
+//      }
+//    }
+//  })
+//
+//  $stateProvider.state('app.todos.index', {
+//    url: '',
+//    templateUrl: 'todos.html',
+//    controller: 'TodosCtrl'
+//  })
+//
+//  $stateProvider.state('app.todos.detail', {
+//    url: '/:todo',
+//    templateUrl: 'todo.html',
+//    controller: 'TodoCtrl',
+//    resolve: {
+//      todo: function($stateParams, TodosService) {
+//        return TodosService.getTodo($stateParams.todo)
+//      }
+//    }
+//  })
+//
+//
+//  $stateProvider.state('app.help', {
+//    url: '/help',
+//    views: {
+//      help: {
+//        templateUrl: 'help.html'
+//      }
+//    }
+//  })
+})
+
+app.factory('TodosService', function() {
+  var todos = [
+    {title: "Take out the trash", done: true},
+    {title: "Do laundry", done: false},
+    {title: "Start cooking dinner", done: false}
+  ]
+
+  return {
+    todos: todos,
+    getTodo: function(index) {
+      return todos[index]
     }
-  ];
-
-  $scope.hey = function(venue) {
-    alert('you want to go to the ' + venue.name + '?');
   }
-});
+})
+
+app.controller('TodosCtrl', function($scope, TodosService) {
+  $scope.todos = TodosService.todos
+})
+
+app.controller('TodoCtrl', function($scope, todo) {
+  $scope.todo = todo
+})
+
+
+//      .state('venue', {
+//        url: '/venue',
+//        abstract: true,
+//        templateUrl: 'templates/venue.html'
+//      })
+//      .state('venue.list', {
+//        url: '/list',
+//        views: {
+//          'venue-list': {
+//            templateUrl: 'templates/venue-list.html',
+//            controller: 'VenueListCtrl'
+//          }
+//        }
+//      })
+//      .state('venue.details', {
+//        url: '/details/:name',
+//        views: {
+//          'venue-list': {
+//            templateUrl: 'templates/venue-details.html',
+//            controller: 'VenueDetailsCtrl'
+//          }
+//        }
+//      });

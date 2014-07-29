@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
 i {
-    margin-right: 10px;
+    margin-right: 5px;
+}
+
+i.icon-large {
+   font-size: 30px;
 }
