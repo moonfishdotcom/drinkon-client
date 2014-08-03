@@ -1,0 +1,12 @@
+<ion-view title="Venues in {{ location.name }}">
+    <ion-content padding="true">
+        <h4>Venues near your location</h4>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="venue in location.venues | orderBy:'distance'" ui-sref="app.find.venue({venue:venue.id})">
+                <i class="icon ion-wineglass" ng-show="venue.sells.drink"></i>
+                <span class="item-note">{{ venue.distance}} m</span>
+                {{ venue.name }}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

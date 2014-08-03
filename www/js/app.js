@@ -8,13 +8,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('app', {
       abstract: true,
-      templateUrl: 'main.html'
+      templateUrl: 'views/main.html'
     })
     .state('app.home', {
       url: '/home',
       views: {
         home: {
-          templateUrl: 'home.html'
+          templateUrl: 'views/home.html'
         }
       }
     })
@@ -27,101 +27,40 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('app.find.location', {
+    .state('app.find.locationsearch', {
       url: '',
-      templateUrl: 'find-location.html',
-      controller: 'FindLocationCtrl'
+      templateUrl: 'views/location-search.html',
+      controller: 'LocationSearchCtrl'
+    })
+    .state('app.find.venuesearch', {
+      url: '/location/:location',
+      templateUrl: 'views/venue-search.html',
+      controller: 'VenueSearchCtrl'
     })
     .state('app.find.venue', {
-      url: '/location/:name',
-      templateUrl: 'find-venue.html',
-      controller: 'FindVenueCtrl'
+      url: '/venue/:venue',
+      templateUrl: 'views/venue-details.html',
+      controller: 'VenueDetailsCtrl'
+    })
+    .state('app.order', {
+      abstract: true,
+      url: '/order',
+      views: {
+        orders: {
+          template: '<ion-nav-view></ion-nav-view>'
+        }
+      }
+    })
+    .state('app.order.history', {
+      url: '',
+      templateUrl: 'views/order-history.html',
+      controller: 'OrderHistoryCtrl'
+    })
+    .state('app.order.new', {
+      url: '/:venueId',
+      templateUrl: 'views/order-items.html',
+      controller: 'OrderItemsCtrl'
     });
 
+});
 
-
-//  $stateProvider.state('app.todos', {
-//    abstract: true,
-//    url: '/home',
-//    views: {
-//      todos: {
-//        template: '<ion-nav-view></ion-nav-view>'
-//      }
-//    }
-//  })
-//
-//  $stateProvider.state('app.todos.index', {
-//    url: '',
-//    templateUrl: 'todos.html',
-//    controller: 'TodosCtrl'
-//  })
-//
-//  $stateProvider.state('app.todos.detail', {
-//    url: '/:todo',
-//    templateUrl: 'todo.html',
-//    controller: 'TodoCtrl',
-//    resolve: {
-//      todo: function($stateParams, TodosService) {
-//        return TodosService.getTodo($stateParams.todo)
-//      }
-//    }
-//  })
-//
-//
-//  $stateProvider.state('app.help', {
-//    url: '/help',
-//    views: {
-//      help: {
-//        templateUrl: 'help.html'
-//      }
-//    }
-//  })
-})
-
-app.factory('TodosService', function() {
-  var todos = [
-    {title: "Take out the trash", done: true},
-    {title: "Do laundry", done: false},
-    {title: "Start cooking dinner", done: false}
-  ]
-
-  return {
-    todos: todos,
-    getTodo: function(index) {
-      return todos[index]
-    }
-  }
-})
-
-app.controller('TodosCtrl', function($scope, TodosService) {
-  $scope.todos = TodosService.todos
-})
-
-app.controller('TodoCtrl', function($scope, todo) {
-  $scope.todo = todo
-})
-
-
-//      .state('venue', {
-//        url: '/venue',
-//        abstract: true,
-//        templateUrl: 'templates/venue.html'
-//      })
-//      .state('venue.list', {
-//        url: '/list',
-//        views: {
-//          'venue-list': {
-//            templateUrl: 'templates/venue-list.html',
-//            controller: 'VenueListCtrl'
-//          }
-//        }
-//      })
-//      .state('venue.details', {
-//        url: '/details/:name',
-//        views: {
-//          'venue-list': {
-//            templateUrl: 'templates/venue-details.html',
-//            controller: 'VenueDetailsCtrl'
-//          }
-//        }
-//      });

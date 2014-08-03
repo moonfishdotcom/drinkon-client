@@ -1,0 +1,16 @@
+<ion-view title="Locations">
+    <ion-content padding="true">
+        <h4>Where are you going tonight?</h4>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Location" ng-model="searchText">
+            </label>
+        </div>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="location in locations | orderBy:'name' | filter:searchText" ui-sref="app.find.venuesearch({location:location.id})">
+                {{ location.name }}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
