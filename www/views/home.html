@@ -1,6 +1,12 @@
-<ion-view title="Home">
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/Bartender256.png' class='title_img' />">
     <ion-content padding="true">
         <h3>Hi Steve</h3>
-        This is the homepage - content to follow...
+        <h4>Your current orders</h4>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="order in orders" ui-sref="app.find.vendor({})">
+                <span class="item-note">{{ order.vendor_name}} by {{ order.user_known_as }}</span>
+                {{ order.order_number }}
+            </a>
+        </div>
     </ion-content>
 </ion-view>

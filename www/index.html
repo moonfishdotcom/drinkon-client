@@ -6,6 +6,7 @@
     <title>drinkon</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poiret+One">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -14,23 +15,27 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
 
     <!-- lodash -->
     <script src="lib/lodash/dist/lodash.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
+    <!-- moment -->
+    <script src="lib/moment/moment.js"></script>
+
+      <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/OrderStateSvc.js"></script>
+    <script src="js/Resources.js"></script>
     <script src="js/Find/LocationSearchCtrl.js"></script>
-    <script src="js/Find/VenueSearchCtrl.js"></script>
-    <script src="js/Find/VenueDetailsCtrl.js"></script>
-    <script src="js/Find/LocationSvc.js"></script>
-    <script src="js/Find/VenueSvc.js"></script>
-    <script src="js/Orders/OrderItemsCtrl.js"></script>
+    <script src="js/Find/VendorSearchCtrl.js"></script>
+    <script src="js/Find/VendorDetailsCtrl.js"></script>
+    <script src="js/Resources.js"></script>
+    <script src="js/Orders/OrderCtrl.js"></script>
     <script src="js/Orders/OrderHistoryCtrl.js"></script>
-    <script src="js/Orders/InventorySvc.js"></script>
   </head>
 
   <body ng-app="drinkon">

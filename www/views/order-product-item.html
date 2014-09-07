@@ -1,0 +1,10 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-content padding="true">
+        <h4 class="text-center page-title">Choose a Product</h4>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ng-click="selectProductItem(productItem)">
+                {{ productType.name }}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

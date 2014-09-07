@@ -1,6 +1,8 @@
 // Code goes here
 
-var app = angular.module('drinkon', ['ionic'])
+var app = angular.module('drinkon', ['ionic', 'ngResource'])
+
+app.constant('apiRoot', 'http://localhost:8080');
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home')
@@ -14,7 +16,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/home',
       views: {
         home: {
-          templateUrl: 'views/home.html'
+          templateUrl: 'views/home.html',
+          controller: 'HomeCtrl',
+          resolve: {
+            orderResource: 'orderResource',
+            orders: function (orderResource) {
+              return orderResource.query({});
+            }
+          }
         }
       }
     })
@@ -30,17 +39,35 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('app.find.locationsearch', {
       url: '',
       templateUrl: 'views/location-search.html',
-      controller: 'LocationSearchCtrl'
+      controller: 'LocationSearchCtrl',
+      resolve: {
+        locationResource: 'locationResource',
+        locations: function (locationResource) {
+          return locationResource.query();
+        }
+      }
     })
-    .state('app.find.venuesearch', {
-      url: '/location/:location',
-      templateUrl: 'views/venue-search.html',
-      controller: 'VenueSearchCtrl'
+    .state('app.find.vendorsearch', {
+      url: '/location/:locationId',
+      templateUrl: 'views/vendor-search.html',
+      resolve: {
+        locationResource: 'locationResource',
+        location: function (locationResource, $stateParams) {
+          return locationResource.get({locationId: $stateParams.locationId});
+        }
+      },
+      controller: 'VendorSearchCtrl'
     })
-    .state('app.find.venue', {
-      url: '/venue/:venue',
-      templateUrl: 'views/venue-details.html',
-      controller: 'VenueDetailsCtrl'
+    .state('app.find.vendor', {
+      url: '/vendor/:vendorId',
+      templateUrl: 'views/vendor-details.html',
+      resolve: {
+        vendorResource: 'vendorResource',
+        vendor: function (vendorResource, $stateParams) {
+          return vendorResource.get({vendorId: $stateParams.vendorId});
+        }
+      },
+      controller: 'VendorDetailsCtrl'
     })
     .state('app.order', {
       abstract: true,
@@ -51,16 +78,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('app.order.history', {
-      url: '',
-      templateUrl: 'views/order-history.html',
-      controller: 'OrderHistoryCtrl'
-    })
     .state('app.order.new', {
-      url: '/:venueId',
-      templateUrl: 'views/order-items.html',
-      controller: 'OrderItemsCtrl'
+      url: '/',
+      templateUrl: 'views/order-product-type.html',
+      resolve: {
+        vendorResource: 'vendorResource',
+        productResource: 'productResource',
+        vendor: function(vendorResource, OrderStateSvc) {
+          return vendorResource.get({vendorId: OrderStateSvc.vendorId});
+        },
+        products: function(productResource, OrderStateSvc) {
+          return productResource.get({vendorId: OrderStateSvc.vendorId});
+        }
+      },
+      controller: 'OrderProductTypeCtrl'
+    })
+    .state('app.order.new.product', {
+      url: '/product',
+      templateUrl: 'views/order-product-item.html',
+      controller: 'OrderProductItemCtrl'
     });
-
 });
 
+angular.module('drinkon').run(function ($rootScope, $state) {
+  $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+    console.log('OW! - ' + error);
+  });
+});
