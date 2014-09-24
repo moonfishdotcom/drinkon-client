@@ -1,0 +1,11 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-content padding="true">
+        <h4 class="text-center page-title">Choose a Measure</h4>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="measure in product.measures | orderBy:'unitPrice'" ui-sref="app.order.edit.count({typeId:productType.id, productId:product.id, measureId: measure.id})">
+                {{ measure.name }}
+                <span class="item-note">{{ measure.unitPrice | currency:"£" }}</span>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

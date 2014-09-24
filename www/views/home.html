@@ -3,8 +3,8 @@
         <h3>Hi Steve</h3>
         <h4>Your current orders</h4>
         <div class="list list-inset">
-            <a class="item" href="#" ng-repeat="order in orders" ui-sref="app.find.vendor({})">
-                <span class="item-note">{{ order.vendor_name}} by {{ order.user_known_as }}</span>
+            <a class="item" href="#" ng-repeat="order in orders" ui-sref="app.order.summary({orderId:order.id})">
+                <span class="item-note">{{ order.order_status_name }}</span>
                 {{ order.order_number }}
             </a>
         </div>

@@ -2,7 +2,7 @@
     <ion-content padding="true">
         <h4 class="text-center page-title">Choose a Product Type</h4>
         <div class="list list-inset">
-            <a class="item" href="#" ng-repeat="productType in products.productTypes | orderBy:'name'" ui-sref="app.order.new.product({})">
+            <a class="item" href="#" ng-repeat="productType in products.productTypes | orderBy:'name'" ui-sref="app.order.edit.product({typeId:productType.id})">
                 {{ productType.name }}
             </a>
         </div>

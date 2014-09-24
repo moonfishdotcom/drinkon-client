@@ -2,8 +2,8 @@
     <ion-content padding="true">
         <h4 class="text-center page-title">Choose a Product</h4>
         <div class="list list-inset">
-            <a class="item" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ng-click="selectProductItem(productItem)">
-                {{ productType.name }}
+            <a class="item" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ui-sref="app.order.edit.measure({typeId:productType.id, productId:productItem.id})">
+                {{ productItem.name }}
             </a>
         </div>
     </ion-content>
