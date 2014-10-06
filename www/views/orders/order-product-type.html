@@ -1,0 +1,20 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader">
+        <div class="drinkon-subtitle-left">
+            <button class="button button-clear button-balanced" ui-sref="app.vendor.locationSearch">Back</button>
+        </div>
+        <h4 class="drinkon-subtitle">Choose a Product Type</h4>
+        <div class="drinkon-subtitle-left"></div>
+    </ion-header-bar>
+    <ion-content padding="true">
+        <div class="list list-inset">
+            <a class="item item-avatar" href="#" ng-repeat="productType in products.productTypes | orderBy:'name'" ui-sref="app.order.edit.product({typeId:productType.id})">
+                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/products/bitter.jpg">
+                <h2>{{ productType.name }}</h2>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

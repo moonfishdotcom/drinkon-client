@@ -33,3 +33,54 @@ i.icon-large {
 .field-label {
     font-weight: 600;
 }
+
+.drinkon-subtitle-left {
+    display: inherit;
+    margin: 0px 5px;
+    width: 50px;
+    float: left;
+}
+
+.drinkon-subtitle-right {
+    display: inherit;
+    width: 50px;
+    float: right;
+}
+
+.drinkon-subtitle {
+    position: absolute;
+    top : 0;
+    margin: 11px 0px;
+    left: 50px;
+    right: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.drinkon-footer {
+    padding: 0px;
+    margin: 0px;
+}
+
+.drinkon-button-row {
+    text-align: center;
+}
+
+.drinkon-button-row > button {
+    margin: 0px 2px;
+    font-size: 14px;
+}
+
+.product-line-image {
+    width: 40px;
+}
+
+.item-small-text {
+    font-size: 14px;
+}
+
+.item-order-status {
+    text-align: center;
+    font-weight: normal;
+}

@@ -14,22 +14,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('app.home', {
       url: '/home',
-      views: {
-        home: {
-          templateUrl: 'views/home.html',
-          resolve: {
-            orderSvc: 'orderSvc',
-            orders: function (orderSvc) {
-              return orderSvc.getOrdersForUser('Barry')
-                .then(function (results) {
-                  return results.data;
-                });
-            }
-          },
-          controller: function($scope, orders) {
-            $scope.orders = orders;
-          }
+      templateUrl: 'views/home.html',
+      resolve: {
+        orderSvc: 'orderSvc',
+        orders: function (orderSvc) {
+          return orderSvc.getOrdersForUser(1)
+            .then(function (results) {
+              return results.data;
+            });
         }
+      },
+      controller: function($scope, orders) {
+        $scope.orders = orders;
       }
     });
 });
@@ -43,5 +39,6 @@ angular.module('drinkon').run(function ($rootScope, $state) {
   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
     console.log('OW!');
     console.log(error);
+    console.log(toParams);
   });
 });

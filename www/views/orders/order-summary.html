@@ -1,0 +1,51 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader bar-stable">
+        <h4 class="drinkon-subtitle">Order {{ order.order_number }}</h4>
+    </ion-header-bar>
+    <ion-content padding="true">
+        <div class="list">
+            <div class="item item-divider item-energized item-order-status">
+                {{ order.order_status_name }} (created {{ getFormattedCreatedDate(order.order_created) }})
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-divider">
+                Venue
+            </div>
+            <div class="item">
+                {{ order.vendor_name }}
+            </div>
+            <div class="item item-divider">
+                Subtotal: {{ order.order_total | currency:"£" }} ({{ order.item_count }} items)
+            </div>
+            <div class="list">
+                <a class="item item-thumbnail-left" ng-repeat="line in order.lines">
+                    <img class="product-line-image" src="https://s3-eu-west-1.amazonaws.com/drinkon/products/{{ line.product_type_id }}_{{ line.product_measure_id }}.jpg" />
+                    <h3>{{ line.product_name }}</h3>
+                    <h4>{{ line.product_measure_name }}</h4>
+                    <h5>{{ line.product_unit_price | currency:"£" }}</h5>
+                    <div style="vertical-align: middle">
+                        <select ng-change="updateOrderLine(line.ruid, orderLineQty)" ng-model="orderLineQty">
+                            <option ng-repeat="qty in [1,2,3,4,5]" ng-selected="qty === line.product_qty">{{ qty }}</option>
+                        </select>
+                        <button class="button button-small button-outline button-assertive" ng-click="deleteOrderLine(line.ruid)">Remove</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="drinkon-footer">
+        <div class="row" style="text-align: center; display: inline-table;">
+            <button class="button button-small button-positive" ui-sref="app.order.edit.type">
+                Confirm Order
+            </button>
+            &nbsp;
+            <button class="button button-small button-positive" ui-sref="app.order.edit.type">
+                Add Items to Order
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

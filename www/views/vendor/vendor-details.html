@@ -1,0 +1,47 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader">
+        <div class="drinkon-subtitle-left">
+            <button class="button button-clear button-balanced" ui-sref="app.vendor.locationSearch">Back</button>
+        </div>
+        <h4 class="drinkon-subtitle">{{ vendor.name }}</h4>
+        <div class="drinkon-subtitle-left"></div>
+    </ion-header-bar>
+    <ion-content padding="true">
+        <div class="list no-border no-top-margin">
+            <div class="item item-body no-border">
+                <img class="full-image" src="https://s3-eu-west-1.amazonaws.com/drinkon/vendors/{{ vendor.id }}-venue.jpg">
+                <p>
+                    {{ vendor.description.line1 }}
+                </p>
+                <p>
+                    {{ vendor.description.line2 }}
+                </p>
+                <p>
+                    {{ vendor.description.line3 }}
+                </p>
+            </div>
+             <!--<div class="item tabs tabs-secondary tabs-icon-top no-border">-->
+                <!--<a class="tab-item pad-5-bottom" href="#">-->
+                    <!--<i class="icon ion-chatbubbles"></i>-->
+                    <!--Reviews-->
+                <!--</a>-->
+                <!--<a class="tab-item" href="#">-->
+                    <!--<i class="icon ion-map"></i>-->
+                    <!--View Location-->
+                <!--</a>-->
+                <!--<a class="tab-item" href="#">-->
+                    <!--<i class="icon ion-clipboard"></i>-->
+                    <!--Past Visits-->
+                <!--</a>-->
+            <!--</div>-->
+        </div>
+    </ion-content>
+    <ion-footer-bar class="drinkon-footer">
+        <div class="row" style="text-align: center; display: inline-table;">
+            <button class="button button-positive" ng-click="newOrder()">Place an Order</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

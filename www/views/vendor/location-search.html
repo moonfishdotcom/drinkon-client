@@ -1,6 +1,11 @@
 <ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader">
+        <h4 class="drinkon-subtitle">Choose a Location</h4>
+    </ion-header-bar>
     <ion-content padding="true">
-        <h4>Where are you going tonight?</h4>
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
@@ -8,8 +13,8 @@
             </label>
         </div>
         <div class="list list-inset">
-            <a class="item" href="#" ng-repeat="location in locations | orderBy:'name' | filter:searchText" ui-sref="app.find.vendorsearch({locationId:location.id})">
-                {{ location.name }}
+            <a class="item" href="#" ng-repeat="location in locations | orderBy:'location_name' | filter:searchText" ui-sref="app.vendor.list.byLocation({locationId:location.id})">
+                {{ location.location_name }}
             </a>
         </div>
     </ion-content>
