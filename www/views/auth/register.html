@@ -1,0 +1,43 @@
+<ion-view title="<span class='title-text'>iBartender</span><img src='img/Bartender256.png' class='title_img' />">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader bar-stable">
+        <h4 class="drinkon-subtitle">Register as a User</h4>
+    </ion-header-bar>
+    <ion-content class="padding has-header">
+        Please provide some details below which will allow you to register as a Preorder user.
+        <br><br>
+        <form>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="user.username"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="user.password"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Confirm Password</span>
+                    <input type="password" ng-model="confirmedPassword"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Display Name</span>
+                    <input type="text" ng-model="user.displayName"/>
+                </label>
+            </div>
+            <div ng-show="!!errorMessage">
+                <span>{{ errorMessage }}</span>
+            </div>
+            <div class="drinkon-button-row">
+                <button class="button button-positive" ng-click="register(user)">
+                    Register
+                </button>
+                <button class="button button-stable" ng-click="cancel()">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

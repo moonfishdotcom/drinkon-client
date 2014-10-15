@@ -1,11 +1,29 @@
-angular.module('drinkon').factory('locationSvc', function(apiRoot, $http) {
+angular.module('drinkon').factory('locationSvc', function(apiRoot, $q, $http) {
   return {
     getLocations: function() {
-      return $http.get(apiRoot + '/location');
+      var defer = $q.defer();
+
+      $http.get(apiRoot + '/location')
+        .then(function(result) {
+          defer.resolve(result.data);
+        }, function(err) {
+          defer.reject(err);
+        });
+
+      return defer.promise;
     },
 
     getLocationWithId: function(locationId) {
-      return $http.get(apiRoot + '/location/' + locationId);
+      var defer = $q.defer();
+
+      $http.get(apiRoot + '/location/' + locationId)
+        .then(function(result) {
+          defer.resolve(result.data);
+        }, function(err) {
+          defer.reject(err);
+        });
+
+      return defer.promise;
     }
   };
 })
