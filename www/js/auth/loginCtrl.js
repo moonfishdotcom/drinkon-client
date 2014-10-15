@@ -11,6 +11,12 @@ angular.module('drinkon').controller('loginCtrl', function ($scope, authSvc, $st
     $state.go('app.home');
   };
 
+  $scope.cancel = function() {
+    $scope.user.username = null;
+    $scope.user.password = null;
+    $scope.loginModal.hide();
+  }
+
   $scope.$on('event:auth-loginRequired', function() {
     $scope.loginModal.show();
   });

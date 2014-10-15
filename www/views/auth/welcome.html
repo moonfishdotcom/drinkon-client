@@ -1,20 +1,28 @@
-<ion-view title="<span class='title-text'>iBartender</span><img src='img/Bartender256.png' class='title_img' />">
-    <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
+<ion-view title="{{ appHeader }}">
     <ion-header-bar class="bar bar-subheader bar-stable">
-        <h4 class="drinkon-subtitle">Welcome to Preorder</h4>
+        <h4 class="drinkon-subtitle">Hello</h4>
     </ion-header-bar>
     <ion-content class="padding has-header">
-        Thanks for using Preorder.  You're not currently logged in but don't worry, just tell us how you'd like to proceed:
-        <button class="button button-block button-stable" ng-click="login()">
-            Login with your existing Preorder credentials
-        </button>
-        <button class="button button-block button-stable" ng-click="register()">
-            Register as a new Preorder user
-        </button>
-        <button class="button button-block button-stable" ng-click="continue()">
-            Continue as a guest for now
-        </button>
+        <p class="content">Welcome to <span class='content-text-pre'>pre</span><span class='content-text-order'>order</span>.  As you're not logged in I'm afraid we can't tell who you are.</p>
+        <p class="content">Don't worry though, just tell us how you'd like to proceed.</p>
+        <div class="drinkon-button-row">
+            <ul class="vertical-button-list">
+                <li>
+                    <button class="button button-calm icon-left ion-person" ng-click="login()">
+                        Login
+                    </button>
+                </li>
+                <li>
+                    <button class="button button-calm icon-left ion-person-add" ng-click="register()">
+                        Register
+                    </button>
+                </li>
+                <li>
+                    <button class="button button-calm icon-left ion-arrow-right-c" ng-click="continue()">
+                        Continue
+                    </button>
+                </li>
+            </ul>
+        </div>
     </ion-content>
 </ion-view>

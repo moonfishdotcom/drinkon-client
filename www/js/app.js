@@ -6,6 +6,8 @@ var app = angular.module('drinkon', [
 
 app.constant('apiRoot', 'http://localhost:8080');
 
+app.constant('appHeader', '<span class="title-text-pre">pre</span><span class="title-text-order">order</span><img src="img/logo.png" class="title_img" />');
+
 app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 
   $urlRouterProvider.otherwise('/');

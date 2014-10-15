@@ -1,0 +1,15 @@
+<ion-popover-view ng-controller="popoverCtrl">
+    <ion-content>
+        <ul class="list">
+            <li class="item" ng-if="!getCurrentUser()" ng-click="login()">
+                Login
+            </li>
+            <li class="item" ng-if="!getCurrentUser()" ng-click="register()">
+                Register
+            </li>
+            <li class="item" ng-if="!!getCurrentUser()" ng-click="logout()">
+                Logout
+            </li>
+        </ul>
+    </ion-content>
+</ion-popover-view>

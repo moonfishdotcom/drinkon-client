@@ -23,11 +23,35 @@ i.icon-large {
     top: -5px;
 }
 
-.title-text {
-    font-family: Poiret One;
+.title-text-pre {
+    font-family: Gill Sans;
     font-size: 1.5em;
+    margin-right: 3px;
+    font-weight: 500;
+}
+
+.title-text-order {
+    font-family: Gill Sans;
+    font-size: 1.5em;
+    font-weight: 300;
     margin-right: 8px;
-    font-weight: 600;
+}
+
+.content-text-pre {
+    font-family: Gill Sans;
+    font-size: 1.2em;
+    margin-right: 2px;
+    font-weight: 500;
+}
+
+.content-text-order {
+    font-family: Gill Sans;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+p.content {
+    margin: 5px 30px 20px 30px;
 }
 
 .field-label {
@@ -84,3 +108,27 @@ i.icon-large {
     text-align: center;
     font-weight: normal;
 }
+
+.vertical-button-list {
+    text-align: center;
+}
+
+.vertical-button-list > li {
+    margin-top: 15px;
+}
+
+.vertical-button-list > li > button {
+    width: 150px;
+}
+
+.warning-message {
+    text-align: center;
+    margin: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: red;
+}
+
+.side-menu {
+}
+

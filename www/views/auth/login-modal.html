@@ -4,18 +4,18 @@
     </ion-header-bar>
     <ion-content has-header="true" padding="true">
         <form class="list">
-            <div class="item item-divider">
-                Enter your credentials
-            </div>
-            <div>{{message}}</div>
             <label class="item item-input">
+                <span class="input-label">Username</span>
                 <input type="text" placeholder="Username" ng-model="user.username" required>
             </label>
             <label class="item item-input">
+                <span class="input-label">Password</span>
                 <input type="password" placeholder="Password" ng-model="user.password" required>
             </label>
-            <div class="padding">
-                <button class="button button-block button-stable" ng-click="login()">Login</button>
+            <div class="warning-message" ng-show="!!message">{{message}}</div>
+            <div class="padding drinkon-button-row">
+                <button class="button button-positive" ng-click="login()">Login</button>
+                <button class="button button-stable" ng-click="cancel()">Cancel</button>
             </div>
         </form>
     </ion-content>

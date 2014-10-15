@@ -1,4 +1,6 @@
-angular.module('drinkon').controller('appCtrl', function ($scope, $ionicModal, authSvc, localStorageService, $rootScope) {
+angular.module('drinkon').controller('appCtrl', function ($scope, $ionicModal, authSvc, appHeader, $ionicPopover, $rootScope) {
+
+  // Login Modal
   $ionicModal.fromTemplateUrl('views/auth/login-modal.html', {
     scope: $scope,
     animation: 'slide-in-up',
@@ -8,11 +10,22 @@ angular.module('drinkon').controller('appCtrl', function ($scope, $ionicModal, a
       $scope.loginModal = modal;
     });
 
+  $ionicPopover.fromTemplateUrl('views/auth/popover.html', function(popover) {
+    $scope.userPopover = popover;
+  });
+
+  $scope.appHeader = appHeader;
+
+  $scope.$on('event:auth-closePopover', function() {
+    $scope.userPopover.hide();
+  })
+
   $scope.getCurrentUser = function() {
     return authSvc.getCurrentUser();
   };
 
   $scope.$on('$destroy', function () {
     $scope.loginModal.remove();
+    $scope.userPopover.remove();
   });
 });
