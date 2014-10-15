@@ -15,14 +15,12 @@ angular.module('drinkon')
         templateUrl: 'views/vendor/location-search.html',
         resolve: {
           locationSvc: 'locationSvc',
-          locations: function (locationSvc) {
-            return locationSvc.getLocations()
-              .then(function(result) {
-                return result.data[0];
-              });
+          locations: function(locationSvc) {
+            return locationSvc.getLocations();
           }
         },
         controller: function ($scope, locations) {
+          console.log(locations);
           $scope.locations = locations;
         }
       })
@@ -38,10 +36,7 @@ angular.module('drinkon')
         templateUrl: 'views/vendor/vendor-list-by-location.html',
         resolve: {
           location: function (locationSvc, $stateParams) {
-            return locationSvc.getLocationWithId($stateParams.locationId)
-              .then(function(result) {
-                return result.data;
-              });
+            return locationSvc.getLocationWithId($stateParams.locationId);
           }
         },
         controller: function ($scope, location, $ionicNavBarDelegate) {

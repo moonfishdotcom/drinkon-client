@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "angular-resource": "~1.2.23"
+    "angular-resource": "~1.2.23",
+    "angular-http-auth": "~1.2.1",
+    "angular-local-storage": "~0.1.2"
   }
 }

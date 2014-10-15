@@ -3,7 +3,7 @@
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-header-bar class="bar bar-subheader bar-stable">
-        <h4 class="drinkon-subtitle">Homepage</h4>
+        <h4 class="drinkon-subtitle">{{ getGreeting() }}</h4>
     </ion-header-bar>
     <ion-content class="padding has-header">
         <div class="list">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" ng-show="!!getCurrentUser()">
             <div class="item item-divider">
                 Current Orders
             </div>
