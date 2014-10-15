@@ -49,9 +49,16 @@
             </ion-header-bar>
             <ion-content>
                 <div class="list">
+                    <div class="item item-divider" ng-if="!!getCurrentUser()">
+                        {{ getCurrentUser().display_name }}
+                    </div>
                     <a class="item item-icon-left" ui-sref="app.home" menu-close>
                         <i class="icon ion-home"></i>
                         Homepage
+                    </a>
+                    <a class="item item-icon-left" ng-click="goToVenues()" menu-close>
+                        <i class="icon ion-wineglass"></i>
+                        Venues
                     </a>
                 </div>
             </ion-content>

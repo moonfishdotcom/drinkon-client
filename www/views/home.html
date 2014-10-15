@@ -5,30 +5,20 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
     </ion-nav-buttons>
-    <ion-header-bar class="bar bar-subheader bar-stable">
-        <h4 class="drinkon-subtitle">{{ getGreeting() }}</h4>
-    </ion-header-bar>
-    <ion-content class="padding has-header">
-        <div class="list">
-            <div class="item item-divider">
-                Notifications
-            </div>
-            <div class="item item-small-text">
-                You have no notifications
-            </div>
+    <ion-content>
+        <img class="page-title-image" src="img/welcome.png">
+        <div class="page-title">
+            {{ getGreeting() }}
         </div>
-        <div class="list">
-            <div class="item item-divider">
-                Find a Venue
-            </div>
-            <div class="item">
-                <div class="drinkon-button-row">
-                    <button class="button button-balanced button-small icon-left ion-arrow-shrink">Nearby</button>
-                    <button class="button button-balanced button-small icon-left ion-heart">Favourites</button>
-                    <button class="button button-balanced button-small icon-left ion-map" ui-sref="app.vendor.locationSearch">By Location</button>
-                </div>
-            </div>
+        <div class="page-sub-title">
+            Good to see you again
         </div>
+        <h4>{{ debugMessage }}</h4>
+        <h5>Find me a venue</h5>
+        <div class="drinkon-button-row">
+            <button class="button button-calm icon-left ion-map" ui-sref="app.vendor.locationSearch">Search by Location</button>
+        </div>
+
         <div class="list" ng-show="!!getCurrentUser()">
             <div class="item item-divider">
                 Current Orders

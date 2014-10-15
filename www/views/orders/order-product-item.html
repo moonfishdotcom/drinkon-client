@@ -1,9 +1,16 @@
-<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+<ion-view title="{{ appHeader }}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
+    </ion-nav-buttons>
     <ion-content padding="true">
         <h4 class="text-center page-title">Choose a Product</h4>
         <div class="list list-inset">
-            <a class="item" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ui-sref="app.order.edit.measure({typeId:productType.id, productId:productItem.id})">
-                {{ productItem.name }}
+            <a class="item item-avatar" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ui-sref="app.order.edit.measure({typeId:productType.id, productId:productItem.id})">
+                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/products/{{ productItem.image }}.jpg">
+                <h2>{{ productItem.name }}</h2>
             </a>
         </div>
     </ion-content>

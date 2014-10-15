@@ -1,4 +1,4 @@
-<ion-view title="<span class='title-text'>iBartender</span><img src='img/bartender256.png' class='title_img' />">
+<ion-view title="{{ appHeader }}">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
@@ -12,7 +12,7 @@
     <ion-content padding="true">
         <div class="list list-inset">
             <a class="item item-avatar" href="#" ng-repeat="productType in products.productTypes | orderBy:'name'" ui-sref="app.order.edit.product({typeId:productType.id})">
-                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/products/bitter.jpg">
+                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/product_types/{{ productType.image }}.jpg">
                 <h2>{{ productType.name }}</h2>
             </a>
         </div>

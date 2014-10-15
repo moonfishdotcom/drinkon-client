@@ -1,4 +1,4 @@
-angular.module('drinkon').factory('locationSvc', function(apiRoot, $q, $http) {
+angular.module('drinkon').factory('locationSvc', ['apiRoot', '$q', '$http', function(apiRoot, $q, $http) {
   return {
     getLocations: function() {
       var defer = $q.defer();
@@ -26,4 +26,4 @@ angular.module('drinkon').factory('locationSvc', function(apiRoot, $q, $http) {
       return defer.promise;
     }
   };
-})
+}]);

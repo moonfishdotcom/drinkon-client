@@ -1,4 +1,5 @@
-angular.module('drinkon').factory('authSvc', function(apiRoot, $rootScope, $q, $http, $state, authService, localStorageService) {
+angular.module('drinkon').factory('authSvc', ['apiRoot', '$rootScope', '$q', '$http', '$state', 'authService', 'localStorageService',
+  function(apiRoot, $rootScope, $q, $http, $state, authService, localStorageService) {
 
   var storageKey = 'userData';
 
@@ -78,4 +79,4 @@ angular.module('drinkon').factory('authSvc', function(apiRoot, $rootScope, $q, $
     }
 
   };
-});
+}]);

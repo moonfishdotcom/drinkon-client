@@ -129,6 +129,67 @@ p.content {
     color: red;
 }
 
-.side-menu {
+.select-stable {
+    background-color: #9fa8da;
 }
 
+span.fixed-width-icon {
+    display: inline-block;
+    text-align: center;
+    width: 11px;
+}
+
+span.item-text-margin-left {
+    margin-left: 5px;
+}
+
+p.no-top-margin {
+    margin-top: 0px;
+}
+
+.page-title {
+    position: absolute;
+    color: white;
+    top: 15px;
+    left: 10px;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+.page-title-image {
+    height: 160px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.page-sub-title {
+     position: absolute;
+     color: white;
+     top: 40px;
+     left: 10px;
+     font-weight: 500;
+     font-size: 1.3em;
+ }
+
+.content-header {
+    margin-left: 20px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.content-text {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    opacity: 0.87;
+}
+
+.list-no-borders a {
+    margin: 0px;
+    border: 0;
+}
+
+a.item-avatar h2 {
+    position: relative;
+    top: 10px;
+}

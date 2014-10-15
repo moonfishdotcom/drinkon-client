@@ -70,7 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvi
       resolve: {
         authSvc: 'authSvc',
         orderSvc: 'orderSvc',
-        orders: function (orderSvc, authSvc) {
+        orders: ['orderSvc', 'authSvc', function (orderSvc, authSvc) {
           var currentUser = authSvc.getCurrentUser();
           if (!currentUser) {
             return null;
@@ -81,15 +81,15 @@ app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvi
                 return results.data;
               });
           }
-        }
+        }]
       },
-      controller: function($rootScope, $scope, orders, authSvc) {
+      controller: ['$rootScope', '$scope', 'orders', 'authSvc', function($rootScope, $scope, orders, authSvc) {
         $scope.orders = orders;
         $scope.getGreeting = function() {
           var currentUser = authSvc.getCurrentUser();
           return (!!currentUser ? currentUser.display_name : 'Guest User');
         };
-      }
+      }]
     });
 
     localStorageServiceProvider

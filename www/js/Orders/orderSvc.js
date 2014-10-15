@@ -1,4 +1,4 @@
-angular.module('drinkon').factory('orderSvc', function(apiRoot, $http) {
+angular.module('drinkon').factory('orderSvc', ['apiRoot', '$http', function(apiRoot, $http) {
   return {
     newOrder: function(vendorId, customerId) {
       return $http.post(apiRoot + '/order', {
@@ -34,4 +34,4 @@ angular.module('drinkon').factory('orderSvc', function(apiRoot, $http) {
     }
   }
 
-});
+}]);

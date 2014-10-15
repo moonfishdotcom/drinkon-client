@@ -1,4 +1,5 @@
-angular.module('drinkon').controller('appCtrl', function ($scope, $ionicModal, authSvc, appHeader, $ionicPopover, $rootScope) {
+angular.module('drinkon').controller('appCtrl', ['$scope', '$ionicModal', 'authSvc', 'appHeader', '$ionicPopover', '$state',
+  function ($scope, $ionicModal, authSvc, appHeader, $ionicPopover, $state) {
 
   // Login Modal
   $ionicModal.fromTemplateUrl('views/auth/login-modal.html', {
@@ -28,4 +29,9 @@ angular.module('drinkon').controller('appCtrl', function ($scope, $ionicModal, a
     $scope.loginModal.remove();
     $scope.userPopover.remove();
   });
-});
+
+  $scope.goToVenues = function() {
+    $scope.debugMessage = "hey we're here";
+    $state.go('app.vendor.list');
+  }
+}]);

@@ -1,0 +1,33 @@
+<ion-view title="{{ appHeader }}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <img class="page-title-image" src="img/vendor-list.png">
+        <div class="page-title">
+            Find a venue
+        </div>
+        <div class="list select-stable">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Location
+                </div>
+                <select class="select-stable" ng-model="location" ng-options="location.name for location in locations">
+                    <option value="">All</option>
+                </select>
+            </label>
+        </div>
+        <div class="list list-inset">
+            <a class="item" href="#" ng-repeat="vendor in vendors | filter:{locationId:location.id} | orderBy:'distance'" ui-sref="app.vendor.details({vendorId:vendor.id})">
+                <span class="fixed-width-icon"><i class="icon ion-wineglass" ng-show="vendor.sells.alcohol"></i></span>
+                <span class="fixed-width-icon"><i class="icon ion-coffee" ng-show="vendor.sells.drink"></i></span>
+                <span class="fixed-width-icon"><i class="icon ion-fork" ng-show="vendor.sells.food"></i></span>
+                <span class="item-note">{{ vendor.distance }} m</span>
+                <span class="item-text-margin-left">{{ vendor.name }}</span>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

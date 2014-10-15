@@ -1,4 +1,4 @@
-angular.module('drinkon').controller('loginCtrl', function ($scope, authSvc, $state) {
+angular.module('drinkon').controller('loginCtrl', ['$scope', 'authSvc', '$state', function ($scope, authSvc, $state) {
 
   $scope.message = "";
   $scope.user = {
@@ -41,4 +41,4 @@ angular.module('drinkon').controller('loginCtrl', function ($scope, authSvc, $st
     $state.go('app.home', {}, {reload: true, inherit: false});
   });
 
-});
+}]);
