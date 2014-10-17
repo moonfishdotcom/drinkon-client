@@ -1,0 +1,13 @@
+{
+  "request":{
+    "application":"90B6A-26274",
+    "auth":"ViGPLax5LHm6H9z6ivpAwfitRq5g82YMoWJkB9AGP5JHx6KFuitXHU1Q27LaqB5CnPsx8Y27IKLa2IKmnc9c",
+    "notifications":[
+      "send_date":"now",
+      "ignore_user_timezone": true,
+      "content":{
+        "en":"This is a call to all you fishes"
+      }
+    ]
+  }
+}
