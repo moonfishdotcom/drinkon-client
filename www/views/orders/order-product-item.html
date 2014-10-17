@@ -5,11 +5,14 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
     </ion-nav-buttons>
-    <ion-content padding="true">
-        <h4 class="text-center page-title">Choose a Product</h4>
+    <ion-content>
+        <img class="page-title-image" src="img/vendor-products.png">
+        <div class="page-title">
+            Choose a {{ productType.name }}
+        </div>
         <div class="list list-inset">
             <a class="item item-avatar" href="#" ng-repeat="productItem in productType.products | orderBy:'name'" ui-sref="app.order.edit.measure({typeId:productType.id, productId:productItem.id})">
-                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/products/{{ productItem.image }}.jpg">
+                <img src="img/products/{{ productItem.image }}.jpg">
                 <h2>{{ productItem.name }}</h2>
             </a>
         </div>

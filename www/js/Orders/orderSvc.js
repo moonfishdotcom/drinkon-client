@@ -1,4 +1,4 @@
-angular.module('drinkon').factory('orderSvc', ['apiRoot', '$http', function(apiRoot, $http) {
+angular.module('drinkon').factory('orderSvc', ['apiRoot', '$http', '$q', function(apiRoot, $http, $q) {
   return {
     newOrder: function(vendorId, customerId) {
       return $http.post(apiRoot + '/order', {
@@ -12,7 +12,16 @@ angular.module('drinkon').factory('orderSvc', ['apiRoot', '$http', function(apiR
     },
 
     getOrdersForUser: function(userId) {
-      return $http.get(apiRoot + '/order/user/' + userId);
+      var defer = $q.defer();
+
+      $http.get(apiRoot + '/order/user/' + userId)
+        .then(function(result) {
+          defer.resolve(result.data);
+        }, function(err) {
+          defer.reject(err);
+        });
+
+      return defer.promise;
     },
 
     addOrderLine: function(orderId, productId, measureId, quantity) {
@@ -31,6 +40,12 @@ angular.module('drinkon').factory('orderSvc', ['apiRoot', '$http', function(apiR
 
     deleteOrderLine: function(orderId, orderLineId) {
       return $http.delete(apiRoot + '/order/' + orderId + '/line/' + orderLineId);
+    },
+
+    placeOrder: function(orderId, collectionTime) {
+      return $http.put(apiRoot + '/order/' + orderId, {
+        collectionTime: collectionTime.toISOString().substring(0,19)
+      });
     }
   }
 

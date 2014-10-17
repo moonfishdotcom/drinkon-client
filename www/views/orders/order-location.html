@@ -1,0 +1,45 @@
+<ion-view title="{{ appHeader }}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <img class="page-title-image" src="img/vendors/{{ order.vendor_id }}-vendor.jpg">
+        <div class="page-title">
+            Order {{ order.order_number }}
+        </div>
+        <div class="page-sub-title">
+            {{ order.vendor_name }}
+        </div>
+        <div class="content-header">
+            Which day is the order for?
+        </div>
+        <div class="content-text">
+            <select ng-model="collection.date" ng-options="date.label for date in collectionDates">
+            </select>
+        </div>
+        <div class="content-header">
+            And what time would you like to collect it?
+        </div>
+        <div class="content-text">
+            <select ng-model="collection.time.hour" ng-options="hour for hour in hours">
+            </select>
+            :
+            <select ng-model="collection.time.mins" ng-options="min for min in mins">
+            </select>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="drinkon-footer">
+        <div class="row" style="text-align: center; display: inline-table;">
+            <button class="button button-small button-calm" ui-sref="app.order.edit.type">
+                Return to Summary
+            </button>
+            &nbsp;
+            <button class="button button-small button-positive" ng-click="placeOrder()">
+                Place Order
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -2,17 +2,17 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-header-bar class="bar bar-subheader">
-        <div class="drinkon-subtitle-left">
-            <button class="button button-clear button-balanced" ui-sref="app.vendor.locationSearch">Back</button>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <img class="page-title-image" src="img/vendor-products.png">
+        <div class="page-title">
+            Choose a Product Type
         </div>
-        <h4 class="drinkon-subtitle">Choose a Product Type</h4>
-        <div class="drinkon-subtitle-left"></div>
-    </ion-header-bar>
-    <ion-content padding="true">
         <div class="list list-inset">
             <a class="item item-avatar" href="#" ng-repeat="productType in products.productTypes | orderBy:'name'" ui-sref="app.order.edit.product({typeId:productType.id})">
-                <img src="https://s3-eu-west-1.amazonaws.com/drinkon/product_types/{{ productType.image }}.jpg">
+                <img src="img/product_types/{{ productType.image }}.jpg">
                 <h2>{{ productType.name }}</h2>
             </a>
         </div>

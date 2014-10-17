@@ -30,8 +30,4 @@ angular.module('drinkon').controller('appCtrl', ['$scope', '$ionicModal', 'authS
     $scope.userPopover.remove();
   });
 
-  $scope.goToVenues = function() {
-    $scope.debugMessage = "hey we're here";
-    $state.go('app.vendor.list');
-  }
 }]);

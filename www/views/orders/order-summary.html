@@ -6,7 +6,7 @@
         <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
     </ion-nav-buttons>
     <ion-content>
-        <img class="page-title-image" src="https://s3-eu-west-1.amazonaws.com/drinkon/vendors/{{ order.vendor_id }}-vendor.jpg">
+        <img class="page-title-image" src="img/vendors/{{ order.vendor_id }}-vendor.jpg">
         <div class="page-title">
             Order {{ order.order_number }}
         </div>
@@ -17,7 +17,13 @@
             Status
         </div>
         <div class="content-text">
-            {{ order.order_status_name }} (created {{ getFormattedCreatedDate(order.order_created) }})
+            {{ order.order_status_name }}
+        </div>
+        <div class="content-header" ng-show="order.order_status_id !== 4">
+            Collection Details
+        </div>
+        <div class="content-text" ng-show="order.order_status_id !== 4">
+            Collect at {{ getCollectionTime(order.order_reqd_for) }}
         </div>
         <div class="content-header">
             Subtotal
@@ -30,7 +36,7 @@
         </div>
         <div class="list list-no-borders">
             <a class="item item-thumbnail-left" ng-repeat="line in order.lines">
-                <img class="product-line-image" src="https://s3-eu-west-1.amazonaws.com/drinkon/products/{{ line.product_image_name }}.jpg" />
+                <img class="product-line-image" src="img/products/{{ line.product_image_name }}.jpg" />
                 <h3>{{ line.product_name }}</h3>
                 <h4>{{ line.product_measure_name }}</h4>
                 <h5>{{ line.product_unit_price | currency:"£" }}</h5>
@@ -42,15 +48,16 @@
                 </div>
             </a>
         </div>
+        <br>
     </ion-content>
-    <ion-footer-bar class="drinkon-footer">
+    <ion-footer-bar class="drinkon-footer" ng-if="order.order_status_id === 4">
         <div class="row" style="text-align: center; display: inline-table;">
-            <button class="button button-small button-positive" ui-sref="app.order.edit.type">
-                Confirm Order
+            <button class="button button-small button-calm" ui-sref="app.order.edit.type">
+                Add More Items
             </button>
             &nbsp;
-            <button class="button button-small button-positive" ui-sref="app.order.edit.type">
-                Add Items to Order
+            <button class="button button-small button-positive" ui-sref="app.order.confirm.location" ng-if="order.lines.length > 0">
+                Confirm Pickup Time
             </button>
         </div>
     </ion-footer-bar>

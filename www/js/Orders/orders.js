@@ -2,6 +2,31 @@ angular.module('drinkon')
   .config(function ($stateProvider) {
 
     $stateProvider
+      .state('app.orders', {
+        url: '/orders',
+        templateUrl: 'views/orders/order-history.html',
+        resolve: {
+          orderSvc: 'orderSvc',
+          orders: ['orderSvc', 'authSvc', function(orderSvc, authSvc) {
+            var currentUser = authSvc.getCurrentUser();
+            if (!currentUser) {
+              return null;
+            }
+            else {
+              return orderSvc.getOrdersForUser(authSvc.getCurrentUser().id);
+            }
+          }]
+        },
+        controller: ['$scope', 'orders', function($scope, orders) {
+          $scope.orders = orders;
+          $scope.orderStatuses = [
+            'Pending',
+            'Waiting',
+            'Accepted',
+            'Completed'
+          ]
+        }]
+      })
       .state('app.order', {
         abstract: true,
         url: '/order/:orderId',
@@ -51,8 +76,9 @@ angular.module('drinkon')
                 $scope.order = results.data;
               });
           };
-          $scope.getFormattedCreatedDate = function(createdDate) {
-            return moment(createdDate).fromNow();
+          $scope.getCollectionTime = function(collectionTime) {
+            var time = moment(collectionTime);
+            return time.format('HH:mm') + ' on ' + time.format('dddd Do MMMM');
           };
         }]
       })
@@ -104,5 +130,52 @@ angular.module('drinkon')
               });
           }
         }]
-      });
+      })
+      .state('app.order.confirm', {
+        abstract: true,
+        url: '/confirm',
+        template: '<ion-nav-view></ion-nav-view>'
+      })
+      .state('app.order.confirm.location', {
+        url: '/location',
+        templateUrl: 'views/orders/order-location.html',
+        controller: ['$scope', 'order', 'orderSvc', '$ionicPopup', '$state', function($scope, order, orderSvc, $ionicPopup, $state) {
+          $scope.collection = {
+            date: null,
+            time: null
+          };
+          $scope.order = order;
+
+          $scope.collectionDates = [];
+          for (var i = 0; i < 7; i++) {
+            var date = moment().add(i, 'd');
+            $scope.collectionDates.push({
+              label: date.format('dddd Do MMMM'),
+              value: date
+            });
+          }
+
+          $scope.hours = _.range(11, 24, 1);
+          $scope.mins = _.range(0, 60, 5);
+
+          $scope.placeOrder = function() {
+            var collectionTime = $scope.collection.date.value;
+            collectionTime.hour($scope.collection.time.hour);
+            collectionTime.minute($scope.collection.time.mins);
+            collectionTime.second(0);
+            collectionTime.millisecond(0);
+            orderSvc.placeOrder(order.id, collectionTime)
+              .then(function () {
+                return $ionicPopup.alert({
+                  title: 'Order Placed',
+                  template: 'You will get a notification when the order is confirmed with the venue.'
+                })
+              })
+              .then(function() {
+                $state.go('app.order.summary', { orderId: order.id });
+              });
+          };
+        }]
+      })
+    ;
   });

@@ -1,0 +1,32 @@
+<ion-view title="{{ appHeader }}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <img class="page-title-image" src="img/order-history.png">
+      <div class="page-title">
+      Order History
+      </div>
+      <div class="list">
+          <label class="item item-input item-select">
+              <div class="input-label">
+                  Order Status
+              </div>
+              <select ng-model="status" ng-options="status for status in orderStatuses">
+                  <option value="">All</option>
+              </select>
+          </label>
+          <div class="list">
+              <div class="item">
+                  <a class="item item-small-text" href="#" ng-repeat="order in orders | filter:{order_status_name:status} | orderBy:'order_status_name'" ui-sref="app.order.summary({orderId:order.id})">
+                      <span class="item-note">{{ order.order_status_name }}</span>
+                      {{ order.order_total | currency:"£" }} @ {{ order.vendor_name }}
+                  </a>
+              </div>
+          </div>
+      </div>
+  </ion-content>
+</ion-view>

@@ -24,28 +24,24 @@ i.icon-large {
 }
 
 .title-text-pre {
-    font-family: Gill Sans;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-right: 3px;
     font-weight: 500;
 }
 
 .title-text-order {
-    font-family: Gill Sans;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 300;
     margin-right: 8px;
 }
 
 .content-text-pre {
-    font-family: Gill Sans;
     font-size: 1.2em;
     margin-right: 2px;
     font-weight: 500;
 }
 
 .content-text-order {
-    font-family: Gill Sans;
     font-size: 1.2em;
     font-weight: 300;
 }
@@ -153,7 +149,7 @@ p.no-top-margin {
     top: 15px;
     left: 10px;
     font-weight: 600;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .page-title-image {
@@ -168,7 +164,7 @@ p.no-top-margin {
      top: 40px;
      left: 10px;
      font-weight: 500;
-     font-size: 1.3em;
+     font-size: 1.2em;
  }
 
 .content-header {

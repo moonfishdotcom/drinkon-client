@@ -5,8 +5,11 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-more" ng-click="userPopover.show($event)"></button>
     </ion-nav-buttons>
-    <ion-content padding="true">
-        <h4 class="text-center page-title">How Many?</h4>
+    <ion-content>
+        <img class="page-title-image" src="img/vendor-products.png">
+        <div class="page-title">
+            How Many?
+        </div>
         <div class="list list-inset">
             <a class="item" href="#" ng-repeat="count in [1,2,3,4,5]" ng-click="saveOrderLine(count);">
                 {{ count }}

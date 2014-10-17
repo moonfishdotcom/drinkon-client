@@ -19,18 +19,5 @@
             <button class="button button-calm icon-left ion-map" ui-sref="app.vendor.locationSearch">Search by Location</button>
         </div>
 
-        <div class="list" ng-show="!!getCurrentUser()">
-            <div class="item item-divider">
-                Current Orders
-            </div>
-            <div class="list">
-                <div class="item">
-                        <a class="item item-small-text" href="#" ng-repeat="order in orders" ui-sref="app.order.summary({orderId:order.id})">
-                            <span class="item-note">{{ order.order_status_name }}</span>
-                            {{ order.order_total | currency:"£" }} @ {{ order.vendor_name }}
-                        </a>
-                </div>
-            </div>
-        </div>
     </ion-content>
 </ion-view>
