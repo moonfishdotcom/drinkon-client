@@ -69,22 +69,23 @@ app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvi
       templateUrl: 'views/home.html',
       resolve: {
         authSvc: 'authSvc',
-        orderSvc: 'orderSvc',
-        orders: ['orderSvc', 'authSvc', function (orderSvc, authSvc) {
+        notificationSvc: 'notificationSvc',
+        notifications: ['notificationSvc', 'authSvc', function (notificationSvc, authSvc) {
           var currentUser = authSvc.getCurrentUser();
           if (!currentUser) {
             return null;
           }
           else {
-            return orderSvc.getOrdersForUser(authSvc.getCurrentUser().id)
-              .then(function (results) {
-                return results.data;
-              });
+            return notificationSvc.getNotificationsForUser(authSvc.getCurrentUser().id);
           }
         }]
       },
-      controller: ['$rootScope', '$scope', 'orders', 'authSvc', function($rootScope, $scope, orders, authSvc) {
-        $scope.orders = orders;
+      controller: ['$rootScope', '$scope', 'notifications', 'authSvc', function($rootScope, $scope, notifications, authSvc) {
+        $scope.notifications = _.map(notifications, function(rec) {
+          rec.expiresDisplay = moment(rec.expires).fromNow();
+          return rec;
+        });
+        console.log(notifications);
         $scope.getGreeting = function() {
           var currentUser = authSvc.getCurrentUser();
           return (!!currentUser ? currentUser.display_name : 'Guest User');

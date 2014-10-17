@@ -14,10 +14,20 @@
             Good to see you again
         </div>
         <h4>{{ debugMessage }}</h4>
-        <h5>Find me a venue</h5>
-        <div class="drinkon-button-row">
-            <button class="button button-calm icon-left ion-map" ui-sref="app.vendor.locationSearch">Search by Location</button>
+        <div class="list" ng-show="!!getCurrentUser()">
+            <div class="item item-divider">
+                Latest Messages
+            </div>
+            <div class="list">
+                <div class="item" ng-repeat="notification in notifications">
+                    <a class="item item-thumbnail-left" ui-sref="app.vendor.details({vendorId: notification.vendor_id})">
+                        <img class="product-line-image" src="img/vendors/{{ notification.vendor_id }}-vendor-logo.png" />
+                        <h3>{{ notification.title }}</h3>
+                        <h4>{{ notification.message }}</h4>
+                        <h4>Offer expires {{ notification.expiresDisplay }}</h4>
+                    </a>
+                </div>
+            </div>
         </div>
-
     </ion-content>
 </ion-view>
