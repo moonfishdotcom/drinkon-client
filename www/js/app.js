@@ -4,7 +4,6 @@ var app = angular.module('drinkon', [
   'ngResource',
   'LocalStorageModule']);
 
-//app.constant('apiRoot', 'http://192.168.43.207:8080');
 app.constant('apiRoot', 'http://127.0.0.1:8080');
 
 app.constant('appHeader', '<span class="title-text-pre">pre</span><span class="title-text-order">order</span><img src="img/logo.png" class="title_img" />');
@@ -115,7 +114,7 @@ function initPushwoosh()
   });
 
   //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-  pushNotification.onDeviceReady({ projectid: "805949622129", appid : "90B6A-26274" });
+  //pushNotification.onDeviceReady({ projectid: "", appid : "" });
 
   //register for pushes
   pushNotification.registerDevice(
